@@ -1,6 +1,6 @@
 def check_straight(lst):
     '''Checks if parameter passed in is a straight. Returns T/F.'''
-    # Create what the straight is supposed to be.
+    # Create a straight.  (passed in straight is assumed to be sorted)
     l = list(range(lst[0],lst[0]+len(lst)))
     t_f = False
     # Compare the two.
@@ -16,25 +16,32 @@ def straight(lst):
     
     first_list, rest_lst = [], []
     lst.sort()
+    
     for num in lst: 
         # For every number in the list
         if num not in first_list and len(first_list) < 5: 
             first_list.append(num)
         else:
             rest_lst.append(num)
+    # Sanity check.
     try:
         assert(len(first_list) == 5)
     except AssertionError:
         return False
+    
     # if check_straight returns False, done
     if not check_straight(first_list):
         return False
+    
     # else recurse with remaining list.
     elif len(rest_lst) >= 5:
         return straight(rest_lst)
+    
     return True
 
 if __name__ == "__main__":
+    
+    # Sample lists that may/may not contain straights.
     lst1 = [1,2,3,4,5,
             10,6,7,8,9,
             10,11,12,13,14]
@@ -46,6 +53,6 @@ if __name__ == "__main__":
     lst5 = [1, 2, 3, 4, 5, 2, 3, 4, 5, 6, 9, 7, 5, 6, 8]
 
     lst = [lst1, lst2, lst3, lst4, lst5]
-    for i in lst:
-        #print(sorted(i))
-        print(straight(i))
+    
+    for l in lst:
+        print(straight(l))
