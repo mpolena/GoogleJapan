@@ -13,14 +13,14 @@ def straight(lst):
     
     if len(lst)%5 != 0:
         return False
-    
-    first_list, rest_lst = [], []
     lst.sort()
     
+    first_list, rest_lst = [], []
     for num in lst: 
-        # For every number in the list
+        #  Fill first list with 5 unique elements.
         if num not in first_list and len(first_list) < 5: 
             first_list.append(num)
+        # Everything else goes to the rest list.
         else:
             rest_lst.append(num)
     # Sanity check.
