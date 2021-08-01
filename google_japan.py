@@ -52,5 +52,5 @@ if __name__ == "__main__":
         if value is not None:
             lst = value
     assert(type(lst)==list)
-    #for l in lst:
-    print(straight(lst))
+    
+    print(lst, straight(lst))
