@@ -1,6 +1,10 @@
+import argparse
+
+
 def check_straight(lst):
     '''Checks if parameter passed in is a straight. Returns T/F.'''
     # Create a straight.  (passed in straight is assumed to be sorted)
+    print(lst)
     l = list(range(lst[0],lst[0]+len(lst)))
     t_f = False
     # Compare the two.
@@ -41,18 +45,12 @@ def straight(lst):
 
 if __name__ == "__main__":
     
-    # Sample lists that may/may not contain straights.
-    lst1 = [1,2,3,4,5,
-            10,6,7,8,9,
-            10,11,12,13,14]
-    lst2 = [1,2,3,3,4,4,5,5,6,7]
-    lst3 = [1,2,3,4,5,
-            10,6,7,8,9,
-            10,11,12,13,70]
-    lst4 = [1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 8, 9]
-    lst5 = [1, 2, 3, 4, 5, 2, 3, 4, 5, 6, 9, 7, 5, 6, 8]
-
-    lst = [lst1, lst2, lst3, lst4, lst5]
+    parser = argparse.ArgumentParser("Determine if a list of integers is a straight.")
+    parser.add_argument('-l','--list', nargs='+', type=int, help='<Required> Set flag', required=True)
     
-    for l in lst:
-        print(straight(l))
+    for _, value in parser.parse_args()._get_kwargs():
+        if value is not None:
+            lst = value
+    assert(type(lst)==list)
+    #for l in lst:
+    print(straight(lst))
